@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnooRetrieve", "SnooRetrieve\SnooRetrieve.csproj", "{3C956C2D-E93A-4AAB-8515-10A26900D0F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnooRetrieveGraphical", "SnooRetrieveGraphical\SnooRetrieveGraphical.csproj", "{D6010774-8CC6-4D2C-9597-9716CAECB649}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C956C2D-E93A-4AAB-8515-10A26900D0F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C956C2D-E93A-4AAB-8515-10A26900D0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C956C2D-E93A-4AAB-8515-10A26900D0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C956C2D-E93A-4AAB-8515-10A26900D0F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6010774-8CC6-4D2C-9597-9716CAECB649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6010774-8CC6-4D2C-9597-9716CAECB649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6010774-8CC6-4D2C-9597-9716CAECB649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6010774-8CC6-4D2C-9597-9716CAECB649}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62F7833E-5448-45C6-9BCC-0E953D49CEC0}
+	EndGlobalSection
+EndGlobal
