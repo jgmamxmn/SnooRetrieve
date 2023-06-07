@@ -22,7 +22,7 @@ namespace SnooRetrieve
 		static DateTime _tokenExpiry;
 		static string _refreshToken;
 
-		public static string GetToken(string username, string password)
+		public static async Task<string> GetToken(string username, string password)
 		{
 			if (!string.IsNullOrEmpty(_token) && _tokenExpiry > DateTime.UtcNow)
 			{
@@ -35,7 +35,7 @@ namespace SnooRetrieve
 				{ "password", password }
 			};
 
-			var jsonData = QueryApi(BASE_URL + LOGIN_ENDPOINT, "post", payload, null);
+			var jsonData = await QueryApiAsync(BASE_URL + LOGIN_ENDPOINT, "post", payload, null);
 			var data = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResult>(jsonData);
 
 			_token = data.access_token;
@@ -44,10 +44,10 @@ namespace SnooRetrieve
 			return _token;
 		}
 
-		public static DayResult GetDayHistory(string token, DateOnly date)
+		public static async Task<DayResult> GetDayHistory(string token, DateOnly date)
 		{
 
-			var json = QueryApi(BASE_URL + DATA_ENDPOINT, "get", new Dictionary<string, string>
+			var json = await QueryApiAsync(BASE_URL + DATA_ENDPOINT, "get", new Dictionary<string, string>
 			{
 				{ "startTime", date.ToString("MM/dd/yyyy") + " 00:00:00" }
 			}, token);
@@ -55,11 +55,10 @@ namespace SnooRetrieve
 			return Newtonsoft.Json.JsonConvert.DeserializeObject<DayResult>(json);
 		}
 
-		public static string QueryApi(string queryUrl, string httpMethod, Dictionary<string, string> queryParams, string token)
+		public static string BlockingQueryApi(string queryUrl, string httpMethod, Dictionary<string, string> queryParams, string token)
 		{
 			var T = QueryApiAsync(queryUrl, httpMethod, queryParams, token);
-			if(!T.IsCompleted)
-				T.Wait();
+			T.Wait();
 			return T.Result;
 		}
 		public static async Task<string> QueryApiAsync(string queryUrl, string httpMethod, Dictionary<string, string> queryParams, string token)

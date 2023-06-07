@@ -133,9 +133,9 @@ namespace SnooRetrieve
 		}
 
 
-		public static void DumpAllHistory_JSON(string username, string password, DateOnly startDate, DateOnly lastDate, string outputJsonFile)
+		public static async Task DumpAllHistory_JSON(string username, string password, DateOnly startDate, DateOnly lastDate, string outputJsonFile)
 		{
-			var days = RetrieveAllHistory(username, password, startDate, lastDate);
+			var days = await RetrieveAllHistory(username, password, startDate, lastDate);
 			DumpAllHistory_JSON(days, outputJsonFile);
 		}
 		public static void DumpAllHistory_JSON(Dictionary<DateOnly, DayResult> days, string outputJsonFile)
@@ -156,12 +156,12 @@ namespace SnooRetrieve
 			File.WriteAllText(outputCsvFile, string.Join("\r\n", rows));
 		}
 
-		public static Dictionary<DateOnly, DayResult> RetrieveAllHistory(string username, string password, DateTime startDate, DateTime lastDate, Action<DateOnly> cbkProgress = null)
-			=> RetrieveAllHistory(username, password, DTtoDate(startDate), DTtoDate(lastDate), cbkProgress);
+		public static async Task<Dictionary<DateOnly, DayResult>> RetrieveAllHistory(string username, string password, DateTime startDate, DateTime lastDate, Action<DateOnly> cbkProgress = null)
+			=> await RetrieveAllHistory(username, password, DTtoDate(startDate), DTtoDate(lastDate), cbkProgress);
 
-		public static Dictionary<DateOnly, DayResult> RetrieveAllHistory(string username, string password, DateOnly startDate, DateOnly lastDate, Action<DateOnly> cbkProgress=null)
+		public static async Task<Dictionary<DateOnly, DayResult>> RetrieveAllHistory(string username, string password, DateOnly startDate, DateOnly lastDate, Action<DateOnly> cbkProgress=null)
 		{
-			var token = ApiQuery.GetToken(username, password);
+			var token = await ApiQuery.GetToken(username, password);
 
 			var days = new Dictionary<DateOnly, DayResult>();
 
@@ -171,7 +171,7 @@ namespace SnooRetrieve
 				if (cbkProgress != null)
 					cbkProgress(d);
 
-				var day = ApiQuery.GetDayHistory(token, d);
+				var day = await ApiQuery.GetDayHistory(token, d);
 				days.Add(d, day);
 			}
 

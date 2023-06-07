@@ -51,12 +51,16 @@
 			cbxJson = new CheckBox();
 			saveFileDialog1 = new SaveFileDialog();
 			groupBox4 = new GroupBox();
-			BtnStart = new Button();
+			ProgressText = new Label();
 			RetrieveProgressBar = new ProgressBar();
+			BtnStart = new Button();
+			groupBox5 = new GroupBox();
+			boxAbout = new TextBox();
 			groupBox1.SuspendLayout();
 			groupBox2.SuspendLayout();
 			groupBox3.SuspendLayout();
 			groupBox4.SuspendLayout();
+			groupBox5.SuspendLayout();
 			SuspendLayout();
 			// 
 			// groupBox1
@@ -136,14 +140,14 @@
 			LastDate.Location = new Point(207, 63);
 			LastDate.Name = "LastDate";
 			LastDate.Size = new Size(250, 27);
-			LastDate.TabIndex = 1;
+			LastDate.TabIndex = 5;
 			// 
 			// EarliestDate
 			// 
 			EarliestDate.Location = new Point(207, 25);
 			EarliestDate.Name = "EarliestDate";
 			EarliestDate.Size = new Size(250, 27);
-			EarliestDate.TabIndex = 1;
+			EarliestDate.TabIndex = 4;
 			// 
 			// label3
 			// 
@@ -174,7 +178,7 @@
 			groupBox3.Controls.Add(cbxHtml);
 			groupBox3.Controls.Add(cbxCsv);
 			groupBox3.Controls.Add(cbxJson);
-			groupBox3.Location = new Point(12, 312);
+			groupBox3.Location = new Point(12, 307);
 			groupBox3.Name = "groupBox3";
 			groupBox3.Size = new Size(776, 152);
 			groupBox3.TabIndex = 0;
@@ -187,7 +191,7 @@
 			btnHtml.Location = new Point(717, 105);
 			btnHtml.Name = "btnHtml";
 			btnHtml.Size = new Size(43, 27);
-			btnHtml.TabIndex = 3;
+			btnHtml.TabIndex = 11;
 			btnHtml.Text = "...";
 			btnHtml.UseVisualStyleBackColor = true;
 			btnHtml.Click += btnHtml_Click;
@@ -198,7 +202,7 @@
 			btnCsv.Location = new Point(717, 70);
 			btnCsv.Name = "btnCsv";
 			btnCsv.Size = new Size(43, 27);
-			btnCsv.TabIndex = 3;
+			btnCsv.TabIndex = 9;
 			btnCsv.Text = "...";
 			btnCsv.UseVisualStyleBackColor = true;
 			btnCsv.Click += btnCsv_Click;
@@ -209,7 +213,7 @@
 			btnJson.Location = new Point(717, 32);
 			btnJson.Name = "btnJson";
 			btnJson.Size = new Size(43, 27);
-			btnJson.TabIndex = 3;
+			btnJson.TabIndex = 7;
 			btnJson.Text = "...";
 			btnJson.UseVisualStyleBackColor = true;
 			btnJson.Click += btnJson_Click;
@@ -250,7 +254,7 @@
 			cbxHtml.Location = new Point(13, 105);
 			cbxHtml.Name = "cbxHtml";
 			cbxHtml.Size = new Size(163, 24);
-			cbxHtml.TabIndex = 1;
+			cbxHtml.TabIndex = 10;
 			cbxHtml.Text = "Visual chart (HTML):";
 			cbxHtml.UseVisualStyleBackColor = true;
 			cbxHtml.CheckedChanged += cbxHtml_CheckedChanged;
@@ -261,7 +265,7 @@
 			cbxCsv.Location = new Point(13, 70);
 			cbxCsv.Name = "cbxCsv";
 			cbxCsv.Size = new Size(189, 24);
-			cbxCsv.TabIndex = 1;
+			cbxCsv.TabIndex = 8;
 			cbxCsv.Text = "CSV (can open in Excel):";
 			cbxCsv.UseVisualStyleBackColor = true;
 			cbxCsv.CheckedChanged += cbxCsv_CheckedChanged;
@@ -272,31 +276,30 @@
 			cbxJson.Location = new Point(13, 35);
 			cbxJson.Name = "cbxJson";
 			cbxJson.Size = new Size(238, 24);
-			cbxJson.TabIndex = 1;
+			cbxJson.TabIndex = 6;
 			cbxJson.Text = "JSON (machine-readable) data:";
 			cbxJson.UseVisualStyleBackColor = true;
 			cbxJson.CheckedChanged += cbxJson_CheckedChanged;
 			// 
 			// groupBox4
 			// 
+			groupBox4.Controls.Add(ProgressText);
 			groupBox4.Controls.Add(RetrieveProgressBar);
 			groupBox4.Controls.Add(BtnStart);
-			groupBox4.Location = new Point(12, 486);
+			groupBox4.Location = new Point(12, 475);
 			groupBox4.Name = "groupBox4";
 			groupBox4.Size = new Size(776, 152);
 			groupBox4.TabIndex = 0;
 			groupBox4.TabStop = false;
 			groupBox4.Text = "Let's go!";
 			// 
-			// BtnStart
+			// ProgressText
 			// 
-			BtnStart.Location = new Point(13, 32);
-			BtnStart.Name = "BtnStart";
-			BtnStart.Size = new Size(203, 38);
-			BtnStart.TabIndex = 0;
-			BtnStart.Text = "Retrieve the data";
-			BtnStart.UseVisualStyleBackColor = true;
-			BtnStart.Click += BtnStart_Click;
+			ProgressText.Location = new Point(238, 41);
+			ProgressText.Name = "ProgressText";
+			ProgressText.Size = new Size(532, 29);
+			ProgressText.TabIndex = 2;
+			ProgressText.Text = "Click \"retrieve the data\" to connect to your Snoo account.";
 			// 
 			// RetrieveProgressBar
 			// 
@@ -305,11 +308,44 @@
 			RetrieveProgressBar.Size = new Size(757, 29);
 			RetrieveProgressBar.TabIndex = 1;
 			// 
+			// BtnStart
+			// 
+			BtnStart.Location = new Point(13, 32);
+			BtnStart.Name = "BtnStart";
+			BtnStart.Size = new Size(203, 38);
+			BtnStart.TabIndex = 12;
+			BtnStart.Text = "Retrieve the data";
+			BtnStart.UseVisualStyleBackColor = true;
+			BtnStart.Click += BtnStart_Click;
+			// 
+			// groupBox5
+			// 
+			groupBox5.Controls.Add(boxAbout);
+			groupBox5.Location = new Point(12, 646);
+			groupBox5.Name = "groupBox5";
+			groupBox5.Size = new Size(776, 112);
+			groupBox5.TabIndex = 0;
+			groupBox5.TabStop = false;
+			groupBox5.Text = "About";
+			// 
+			// boxAbout
+			// 
+			boxAbout.BorderStyle = BorderStyle.None;
+			boxAbout.Location = new Point(13, 26);
+			boxAbout.Multiline = true;
+			boxAbout.Name = "boxAbout";
+			boxAbout.ReadOnly = true;
+			boxAbout.ScrollBars = ScrollBars.Vertical;
+			boxAbout.Size = new Size(757, 75);
+			boxAbout.TabIndex = 999;
+			boxAbout.TabStop = false;
+			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(800, 674);
+			ClientSize = new Size(800, 770);
+			Controls.Add(groupBox5);
 			Controls.Add(groupBox4);
 			Controls.Add(groupBox3);
 			Controls.Add(groupBox2);
@@ -323,6 +359,8 @@
 			groupBox3.ResumeLayout(false);
 			groupBox3.PerformLayout();
 			groupBox4.ResumeLayout(false);
+			groupBox5.ResumeLayout(false);
+			groupBox5.PerformLayout();
 			ResumeLayout(false);
 		}
 
@@ -353,5 +391,8 @@
 		private GroupBox groupBox4;
 		private ProgressBar RetrieveProgressBar;
 		private Button BtnStart;
+		private Label ProgressText;
+		private GroupBox groupBox5;
+		private TextBox boxAbout;
 	}
 }
